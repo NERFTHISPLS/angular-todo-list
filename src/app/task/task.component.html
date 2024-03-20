@@ -14,6 +14,7 @@
       </button>
 
       <app-drop-down-list
+        (changeTaskTypeEvent)="changeTaskType($event)"
         class="drop-down-list"
         [isTaskImportant]="isTaskImportant"
       />
