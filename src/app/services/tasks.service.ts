@@ -71,13 +71,28 @@ export class TasksService {
     );
   }
 
+  private _getIntersectionOf(arr1: Task[], arr2: Task[]) {
+    return [arr1, arr2].reduce((acc, arr) => {
+      return acc.filter((res) => arr.find((value) => value.id === res.id));
+    });
+  }
+
   changeTask(changedTask: Task): void {
     this.tasks = this.tasks.map((task) =>
       task.id === changedTask.id ? changedTask : task
     );
 
-    this.filteredTasks = [this.tasks, this.filteredTasks].reduce((acc, arr) => {
-      return acc.filter((res) => arr.find((value) => value.id === res.id));
-    });
+    this.filteredTasks = this._getIntersectionOf(
+      this.tasks,
+      this.filteredTasks
+    );
+  }
+
+  deleteTask(id: string) {
+    this.tasks = this.tasks.filter((task) => task.id !== id);
+    this.filteredTasks = this._getIntersectionOf(
+      this.tasks,
+      this.filteredTasks
+    );
   }
 }

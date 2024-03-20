@@ -4,7 +4,7 @@
   <span class="task-important" *ngIf="isTaskImportant">Important</span>
 
   <div class="btns-container">
-    <button class="btn">
+    <button class="btn" (click)="deleteTask(task.id)">
       <span class="material-symbols-outlined">delete</span>
     </button>
 

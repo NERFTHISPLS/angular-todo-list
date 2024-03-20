@@ -41,4 +41,9 @@ export class TasksListComponent {
     this.tasksService.changeTask(changedTask);
     this._filteredTasks = this.tasksService.filteredTasks;
   }
+
+  deleteTask(id: string) {
+    this.tasksService.deleteTask(id);
+    this._filteredTasks = this.tasksService.filteredTasks;
+  }
 }
