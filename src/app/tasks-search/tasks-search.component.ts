@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { SelectTaskTypeComponent } from '../select-task-type/select-task-type.component';
-import { FilterTaskTypes, TaskEventValue, TaskTypes } from '../interfaces/task';
+import { FilterTaskTypes, TaskEventValue } from '../interfaces/task';
 
 @Component({
   selector: 'app-tasks-search',
