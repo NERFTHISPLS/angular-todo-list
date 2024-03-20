@@ -17,7 +17,5 @@ export class TasksSearchComponent {
 
   searchTasks() {
     this.searchQueryEvent.emit(this.searchForm.value.searchQuery as string);
-
-    this.searchForm.reset();
   }
 }

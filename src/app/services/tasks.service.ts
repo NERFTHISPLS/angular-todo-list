@@ -29,12 +29,12 @@ export class TasksService {
   }
 
   filterTasksByName(query: string) {
-    if (!query) return;
+    if (!query) {
+      this.filteredTasks = this.tasks;
+    }
 
     this.filteredTasks = this.tasks.filter((task) =>
       task.taskName.toLowerCase().includes(query.toLowerCase())
     );
-
-    console.log(this.filteredTasks);
   }
 }

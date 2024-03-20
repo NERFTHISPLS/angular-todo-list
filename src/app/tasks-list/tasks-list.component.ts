@@ -24,9 +24,10 @@ export class TasksListComponent {
 
   @Input() set filteredTasks(searchQuery: string) {
     this.tasksService.filterTasksByName(searchQuery);
+    this._filteredTasks = this.tasksService.filteredTasks;
   }
 
-  getFilteredTasks(): Task[] {
+  get filteredTasks(): Task[] {
     return this._filteredTasks;
   }
 }
