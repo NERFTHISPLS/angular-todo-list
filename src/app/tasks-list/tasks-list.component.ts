@@ -50,6 +50,5 @@ export class TasksListComponent {
   checkTask(id: string): void {
     this.tasksService.checkTask(id);
     this._filteredTasks = this.tasksService.filteredTasks;
-    console.log(this._filteredTasks);
   }
 }
