@@ -1,0 +1,13 @@
+<form class="search-form" [formGroup]="searchForm" (submit)="searchTasks()">
+  <input
+    class="input"
+    type="text"
+    placeholder="Search for the task..."
+    formControlName="searchQuery"
+  />
+
+  <button class="btn">
+    <span class="material-symbols-outlined">search</span>
+    <span>Search</span>
+  </button>
+</form>
