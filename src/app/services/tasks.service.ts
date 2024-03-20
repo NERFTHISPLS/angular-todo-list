@@ -40,6 +40,10 @@ export class TasksService {
     this.filteredTasks = this.tasks;
   }
 
+  private _isTaskIncludes(taskName: string, target: string) {
+    return taskName.toLowerCase().includes(target.toLowerCase());
+  }
+
   filterTasks(searchParams: TaskEventValue): void {
     if (!searchParams) {
       this.filteredTasks = this.tasks;
@@ -56,9 +60,17 @@ export class TasksService {
 
     if (searchParams.taskType === FilterTaskTypes.All) {
       this.filteredTasks = this.tasks.filter((task) =>
-        task.taskName
-          .toLowerCase()
-          .includes(searchParams.taskName.toLowerCase())
+        this._isTaskIncludes(task.taskName, searchParams.taskName)
+      );
+
+      return;
+    }
+
+    if (searchParams.taskType === FilterTaskTypes.Checked) {
+      this.filteredTasks = this.tasks.filter(
+        (task) =>
+          this._isTaskIncludes(task.taskName, searchParams.taskName) &&
+          task.isChecked
       );
 
       return;
@@ -66,9 +78,7 @@ export class TasksService {
 
     this.filteredTasks = this.tasks.filter(
       (task) =>
-        task.taskName
-          .toLowerCase()
-          .includes(searchParams.taskName.toLowerCase()) &&
+        this._isTaskIncludes(task.taskName, searchParams.taskName) &&
         task.taskType === searchParams.taskType
     );
   }

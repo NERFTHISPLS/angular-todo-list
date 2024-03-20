@@ -7,6 +7,7 @@ export enum FilterTaskTypes {
   All = 'All',
   Regular = 'Regular',
   Important = 'Important',
+  Checked = 'Checked',
 }
 
 export interface Task {
