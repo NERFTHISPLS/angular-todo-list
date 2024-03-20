@@ -30,6 +30,8 @@ export class TasksService {
   constructor() {}
 
   addTask(taskName: string, taskType = TaskTypes.Regular): void {
+    if (!taskName) return;
+
     this.tasks = [
       ...this.tasks,
       { id: uuidv4(), taskName, taskType, isChecked: false },
