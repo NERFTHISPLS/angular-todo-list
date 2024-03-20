@@ -1,6 +1,7 @@
 <li class="task">
   <input class="checkbox" type="checkbox" [id]="task.id" />
   <label class="task-label" [for]="task.id">{{ task.taskName }}</label>
+  <span class="task-important" *ngIf="isTaskImportant">Important</span>
 
   <div class="btns-container">
     <button class="btn">

@@ -1,14 +1,21 @@
-import { Component, Input } from '@angular/core';
-import { Task } from '../interfaces/task';
+import { Component, Input, OnInit } from '@angular/core';
+import { Task, TaskTypes } from '../interfaces/task';
 import { DropDownListComponent } from '../drop-down-list/drop-down-list.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [DropDownListComponent],
+  imports: [DropDownListComponent, CommonModule],
   templateUrl: './task.component.html',
   styleUrl: './task.component.scss',
 })
-export class TaskComponent {
+export class TaskComponent implements OnInit {
   @Input() task!: Task;
+
+  isTaskImportant!: boolean;
+
+  ngOnInit(): void {
+    this.isTaskImportant = this.task.taskType === TaskTypes.Important;
+  }
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TaskFormComponent } from './task-form/task-form.component';
 import { TasksListComponent } from './tasks-list/tasks-list.component';
-import { FilterTaskTypes, TaskEventValue, TaskTypes } from './interfaces/task';
+import { TaskEventValue } from './interfaces/task';
 import { TasksSearchComponent } from './tasks-search/tasks-search.component';
 
 @Component({

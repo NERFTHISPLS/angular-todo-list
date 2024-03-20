@@ -108,3 +108,14 @@
     background-color: #e9ecef;
   }
 }
+
+.task-important {
+  display: inline-block;
+
+  padding: 0.2rem 0.4rem;
+
+  font-weight: 500;
+
+  border-radius: 3px;
+  background-color: #ffa8a8;
+}
