@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
-import { TaskTypes } from '../interfaces/task';
+import { NewTaskEventValue, TaskTypes } from '../interfaces/task';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -22,7 +22,20 @@ export class TaskFormComponent {
     this.taskTypesValues = Object.values(TaskTypes);
   }
 
-  submitNewTask() {
-    console.log(this.taskForm.value);
+  @Output() newTaskEvent = new EventEmitter<NewTaskEventValue>();
+
+  addNewTask() {
+    this.newTaskEvent.emit({
+      taskName: this.taskForm.value.taskName as string,
+      taskType: this.taskForm.value.taskType as TaskTypes,
+    });
+
+    Object.keys(this.taskForm.controls).forEach((key: string): void => {
+      if (key === 'taskType') {
+        this.taskForm.controls.taskType.setValue(TaskTypes.Regular);
+      } else {
+        this.taskForm.get(key)!.reset();
+      }
+    });
   }
 }

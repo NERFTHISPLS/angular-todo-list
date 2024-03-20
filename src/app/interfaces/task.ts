@@ -9,3 +9,8 @@ export interface Task {
   taskType: TaskTypes;
   isChecked: false;
 }
+
+export interface NewTaskEventValue {
+  taskName: string;
+  taskType: TaskTypes;
+}
