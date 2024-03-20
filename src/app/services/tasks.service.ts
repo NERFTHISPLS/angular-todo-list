@@ -40,7 +40,7 @@ export class TasksService {
     this.filteredTasks = this.tasks;
   }
 
-  _isTaskIncludes(taskName: string, target: string) {
+  private _isTaskIncludes(taskName: string, target: string) {
     return taskName.toLowerCase().includes(target.toLowerCase());
   }
 
@@ -61,6 +61,16 @@ export class TasksService {
     if (searchParams.taskType === FilterTaskTypes.All) {
       this.filteredTasks = this.tasks.filter((task) =>
         this._isTaskIncludes(task.taskName, searchParams.taskName)
+      );
+
+      return;
+    }
+
+    if (searchParams.taskType === FilterTaskTypes.Checked) {
+      this.filteredTasks = this.tasks.filter(
+        (task) =>
+          this._isTaskIncludes(task.taskName, searchParams.taskName) &&
+          task.isChecked
       );
 
       return;
