@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Task, TaskType } from '../interfaces/task';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root',
@@ -11,4 +12,8 @@ export class TasksService {
   ];
 
   constructor() {}
+
+  addTask(taskName: string, taskType = TaskType.Regular) {
+    this.tasks.push({ id: uuidv4(), taskName, taskType });
+  }
 }
