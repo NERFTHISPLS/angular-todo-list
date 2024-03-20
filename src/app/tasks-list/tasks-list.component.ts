@@ -18,19 +18,19 @@ import { TaskEventValue, Task, TaskTypes } from '../interfaces/task';
   styleUrl: './tasks-list.component.scss',
 })
 export class TasksListComponent {
-  tasksService = inject(TasksService);
-  private _filteredTasks = this.tasksService.filteredTasks;
+  private _tasksService = inject(TasksService);
+  private _filteredTasks = this._tasksService.filteredTasks;
 
   @Input() set newTask(task: TaskEventValue) {
     if (!task) return;
 
-    this.tasksService.addTask(task.taskName, task.taskType as TaskTypes);
-    this._filteredTasks = this.tasksService.filteredTasks;
+    this._tasksService.addTask(task.taskName, task.taskType as TaskTypes);
+    this._filteredTasks = this._tasksService.filteredTasks;
   }
 
   @Input() set filteredTasks(searchParams: TaskEventValue) {
-    this.tasksService.filterTasks(searchParams);
-    this._filteredTasks = this.tasksService.filteredTasks;
+    this._tasksService.filterTasks(searchParams);
+    this._filteredTasks = this._tasksService.filteredTasks;
   }
 
   get filteredTasks(): Task[] {
@@ -38,17 +38,17 @@ export class TasksListComponent {
   }
 
   changeTask(changedTask: Task): void {
-    this.tasksService.changeTask(changedTask);
-    this._filteredTasks = this.tasksService.filteredTasks;
+    this._tasksService.changeTask(changedTask);
+    this._filteredTasks = this._tasksService.filteredTasks;
   }
 
   deleteTask(id: string): void {
-    this.tasksService.deleteTask(id);
-    this._filteredTasks = this.tasksService.filteredTasks;
+    this._tasksService.deleteTask(id);
+    this._filteredTasks = this._tasksService.filteredTasks;
   }
 
   checkTask(id: string): void {
-    this.tasksService.checkTask(id);
-    this._filteredTasks = this.tasksService.filteredTasks;
+    this._tasksService.checkTask(id);
+    this._filteredTasks = this._tasksService.filteredTasks;
   }
 }
