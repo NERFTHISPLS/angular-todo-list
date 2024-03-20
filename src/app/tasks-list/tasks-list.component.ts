@@ -20,6 +20,7 @@ export class TasksListComponent {
     if (!task) return;
 
     this.tasksService.addTask(task.taskName, task.taskType);
+    this._filteredTasks = this.tasksService.filteredTasks;
   }
 
   @Input() set filteredTasks(searchQuery: string) {
