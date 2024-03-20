@@ -1,12 +1,17 @@
-<form>
-  <input name="task-name" type="text" placeholder="Add your task..." />
+<form class="form-task-input">
+  <input
+    class="task-input"
+    name="task-name"
+    type="text"
+    placeholder="Add your task..."
+  />
 
-  <select name="task-status">
+  <select class="task-status" name="task-status">
     <option value="regular">Regular</option>
     <option value="important">Important</option>
   </select>
 
-  <button>
+  <button class="btn-add-task">
     <span class="material-symbols-outlined">add_circle</span>
   </button>
 </form>
