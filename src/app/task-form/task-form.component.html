@@ -1,14 +1,16 @@
-<form class="form-task-input">
+<form class="form-task-input" [formGroup]="taskForm" (submit)="submitNewTask()">
   <input
     class="task-input"
     name="task-name"
     type="text"
     placeholder="Add your task..."
+    formControlName="taskName"
   />
 
-  <select class="task-status" name="task-status">
-    <option value="regular">Regular</option>
-    <option value="important">Important</option>
+  <select class="task-status" name="task-status" formControlName="taskType">
+    <option *ngFor="let taskType of taskTypesValues" [value]="taskType">
+      {{ taskType }}
+    </option>
   </select>
 
   <button class="btn-add-task">

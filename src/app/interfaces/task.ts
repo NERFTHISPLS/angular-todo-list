@@ -1,11 +1,11 @@
-export enum TaskType {
-  Regular,
-  Important,
-  Checked,
+export enum TaskTypes {
+  Regular = 'Regular',
+  Important = 'Important',
 }
 
 export interface Task {
   id: string;
   taskName: string;
-  taskType: TaskType;
+  taskType: TaskTypes;
+  isChecked: false;
 }
