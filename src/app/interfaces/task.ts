@@ -3,6 +3,12 @@ export enum TaskTypes {
   Important = 'Important',
 }
 
+export enum FilterTaskTypes {
+  All = 'All',
+  Regular = 'Regular',
+  Important = 'Important',
+}
+
 export interface Task {
   id: string;
   taskName: string;

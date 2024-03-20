@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { TaskTypes } from '../interfaces/task';
+import { FilterTaskTypes, TaskTypes } from '../interfaces/task';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -11,12 +11,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './select-task-type.component.scss',
 })
 export class SelectTaskTypeComponent {
-  taskTypesValues: string[];
-
-  constructor() {
-    this.taskTypesValues = Object.values(TaskTypes);
-  }
-
-  @Input() control!: FormControl<TaskTypes | null>;
+  @Input() taskTypesValues!: string[];
+  @Input() control!: FormControl<TaskTypes | FilterTaskTypes | null>;
   @Input() form!: FormGroup;
 }

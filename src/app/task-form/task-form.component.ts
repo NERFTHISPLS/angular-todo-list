@@ -16,6 +16,7 @@ export class TaskFormComponent {
     taskName: new FormControl(''),
     taskType: new FormControl<TaskTypes>(TaskTypes.Regular),
   });
+  taskTypesValues = Object.values(TaskTypes);
 
   @Output() newTaskEvent = new EventEmitter<NewTaskEventValue>();
 
