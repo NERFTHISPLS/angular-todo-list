@@ -1,4 +1,10 @@
-import { Component, Input, inject } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TaskComponent } from '../task/task.component';
 import { TasksService } from '../services/tasks.service';
@@ -13,8 +19,7 @@ import { TaskEventValue, Task, TaskTypes } from '../interfaces/task';
 })
 export class TasksListComponent {
   tasksService = inject(TasksService);
-  tasks = this.tasksService.tasks;
-  _filteredTasks = this.tasks;
+  private _filteredTasks = this.tasksService.filteredTasks;
 
   @Input() set newTask(task: TaskEventValue) {
     if (!task) return;
@@ -30,5 +35,10 @@ export class TasksListComponent {
 
   get filteredTasks(): Task[] {
     return this._filteredTasks;
+  }
+
+  changeTask(changedTask: Task) {
+    this.tasksService.changeTask(changedTask);
+    this._filteredTasks = this.tasksService.filteredTasks;
   }
 }

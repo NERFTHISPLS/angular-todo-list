@@ -1,14 +1,23 @@
 <li class="task">
   <input class="checkbox" type="checkbox" [id]="task.id" />
   <label class="task-label" [for]="task.id">{{ task.taskName }}</label>
+  <span class="task-important" *ngIf="isTaskImportant">Important</span>
 
   <div class="btns-container">
     <button class="btn">
       <span class="material-symbols-outlined">delete</span>
     </button>
 
-    <button class="btn">
-      <span class="material-symbols-outlined">more_horiz</span>
-    </button>
+    <div class="btn-options-container">
+      <button class="btn">
+        <span class="material-symbols-outlined">more_horiz</span>
+      </button>
+
+      <app-drop-down-list
+        (changeTaskTypeEvent)="changeTaskType($event)"
+        class="drop-down-list"
+        [isTaskImportant]="isTaskImportant"
+      />
+    </div>
   </div>
 </li>

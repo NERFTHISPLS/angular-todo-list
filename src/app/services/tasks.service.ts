@@ -21,7 +21,7 @@ export class TasksService {
     {
       id: 'task2',
       taskName: 'Some task 2',
-      taskType: TaskTypes.Regular,
+      taskType: TaskTypes.Important,
       isChecked: false,
     },
   ];
@@ -30,7 +30,11 @@ export class TasksService {
   constructor() {}
 
   addTask(taskName: string, taskType = TaskTypes.Regular): void {
-    this.tasks.push({ id: uuidv4(), taskName, taskType, isChecked: false });
+    this.tasks = [
+      ...this.tasks,
+      { id: uuidv4(), taskName, taskType, isChecked: false },
+    ];
+
     this.filteredTasks = this.tasks;
   }
 
@@ -65,5 +69,15 @@ export class TasksService {
           .includes(searchParams.taskName.toLowerCase()) &&
         task.taskType === searchParams.taskType
     );
+  }
+
+  changeTask(changedTask: Task): void {
+    this.tasks = this.tasks.map((task) =>
+      task.id === changedTask.id ? changedTask : task
+    );
+
+    this.filteredTasks = [this.tasks, this.filteredTasks].reduce((acc, arr) => {
+      return acc.filter((res) => arr.find((value) => value.id === res.id));
+    });
   }
 }
