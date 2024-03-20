@@ -67,6 +67,8 @@
 }
 
 .btns-container {
+  position: relative;
+
   display: flex;
 }
 
@@ -84,6 +86,25 @@
   background: none;
 
   &:hover {
+    background-color: #e9ecef;
+  }
+}
+
+.drop-down-list {
+  display: none;
+
+  position: absolute;
+  top: 0;
+  right: -100%;
+  transform: translate(55%, 20%);
+}
+
+.btn-options-container:hover {
+  .drop-down-list {
+    display: block;
+  }
+
+  button {
     background-color: #e9ecef;
   }
 }
