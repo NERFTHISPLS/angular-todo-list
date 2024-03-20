@@ -20,16 +20,23 @@ import { CommonModule } from '@angular/common';
 })
 export class TaskComponent implements OnInit {
   @Input() task!: Task;
+
   isTaskImportant!: boolean;
+
   @Output() taskChangeEvent = new EventEmitter<Task>();
+  @Output() taskDeleteEvent = new EventEmitter<string>();
 
   ngOnInit(): void {
     this.isTaskImportant = this.task.taskType === TaskTypes.Important;
   }
 
-  changeTaskType(newTaskType: TaskTypes) {
+  changeTaskType(newTaskType: TaskTypes): void {
     const updatedTask = { ...this.task, taskType: newTaskType };
 
     this.taskChangeEvent.emit(updatedTask);
+  }
+
+  deleteTask(id: string): void {
+    this.taskDeleteEvent.emit(id);
   }
 }
