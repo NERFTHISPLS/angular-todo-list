@@ -16,7 +16,7 @@ export interface Task {
   isChecked: false;
 }
 
-export interface NewTaskEventValue {
+export interface TaskEventValue {
   taskName: string;
-  taskType: TaskTypes;
+  taskType: TaskTypes | FilterTaskTypes;
 }

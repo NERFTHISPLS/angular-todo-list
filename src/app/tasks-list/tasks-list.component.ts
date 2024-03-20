@@ -2,7 +2,7 @@ import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TaskComponent } from '../task/task.component';
 import { TasksService } from '../services/tasks.service';
-import { NewTaskEventValue, Task } from '../interfaces/task';
+import { TaskEventValue, Task, TaskTypes } from '../interfaces/task';
 
 @Component({
   selector: 'app-tasks-list',
@@ -16,15 +16,15 @@ export class TasksListComponent {
   tasks = this.tasksService.tasks;
   _filteredTasks = this.tasks;
 
-  @Input() set newTask(task: NewTaskEventValue) {
+  @Input() set newTask(task: TaskEventValue) {
     if (!task) return;
 
-    this.tasksService.addTask(task.taskName, task.taskType);
+    this.tasksService.addTask(task.taskName, task.taskType as TaskTypes);
     this._filteredTasks = this.tasksService.filteredTasks;
   }
 
-  @Input() set filteredTasks(searchQuery: string) {
-    this.tasksService.filterTasksByName(searchQuery);
+  @Input() set filteredTasks(searchParams: TaskEventValue) {
+    this.tasksService.filterTasks(searchParams);
     this._filteredTasks = this.tasksService.filteredTasks;
   }
 

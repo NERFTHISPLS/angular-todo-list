@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Task, TaskTypes } from '../interfaces/task';
+import {
+  FilterTaskTypes,
+  Task,
+  TaskEventValue,
+  TaskTypes,
+} from '../interfaces/task';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
@@ -24,20 +29,41 @@ export class TasksService {
 
   constructor() {}
 
-  addTask(taskName: string, taskType = TaskTypes.Regular) {
+  addTask(taskName: string, taskType = TaskTypes.Regular): void {
     this.tasks.push({ id: uuidv4(), taskName, taskType, isChecked: false });
     this.filteredTasks = this.tasks;
-
-    console.log(this.tasks);
   }
 
-  filterTasksByName(query: string) {
-    if (!query) {
+  filterTasks(searchParams: TaskEventValue): void {
+    if (!searchParams) {
       this.filteredTasks = this.tasks;
+      return;
     }
 
-    this.filteredTasks = this.tasks.filter((task) =>
-      task.taskName.toLowerCase().includes(query.toLowerCase())
+    if (
+      !searchParams.taskName &&
+      searchParams.taskType === FilterTaskTypes.All
+    ) {
+      this.filteredTasks = this.tasks;
+      return;
+    }
+
+    if (searchParams.taskType === FilterTaskTypes.All) {
+      this.filteredTasks = this.tasks.filter((task) =>
+        task.taskName
+          .toLowerCase()
+          .includes(searchParams.taskName.toLowerCase())
+      );
+
+      return;
+    }
+
+    this.filteredTasks = this.tasks.filter(
+      (task) =>
+        task.taskName
+          .toLowerCase()
+          .includes(searchParams.taskName.toLowerCase()) &&
+        task.taskType === searchParams.taskType
     );
   }
 }

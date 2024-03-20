@@ -1,3 +1,3 @@
 <app-task-form class="task-form" (newTaskEvent)="setNewTask($event)" />
-<app-tasks-search (searchQueryEvent)="setSearchQuery($event)" />
-<app-tasks-list [newTask]="newTask" [filteredTasks]="searchQuery" />
+<app-tasks-search (searchQueryEvent)="searchTasks($event)" />
+<app-tasks-list [newTask]="newTask" [filteredTasks]="taskParams" />
