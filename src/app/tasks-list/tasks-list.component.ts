@@ -2,7 +2,7 @@ import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TaskComponent } from '../task/task.component';
 import { TasksService } from '../services/tasks.service';
-import { NewTaskEventValue } from '../interfaces/task';
+import { NewTaskEventValue, Task } from '../interfaces/task';
 
 @Component({
   selector: 'app-tasks-list',
@@ -14,6 +14,7 @@ import { NewTaskEventValue } from '../interfaces/task';
 export class TasksListComponent {
   tasksService = inject(TasksService);
   tasks = this.tasksService.tasks;
+  _filteredTasks = this.tasks;
 
   @Input() set newTask(task: NewTaskEventValue) {
     if (!task) return;
@@ -22,6 +23,10 @@ export class TasksListComponent {
   }
 
   @Input() set filteredTasks(searchQuery: string) {
-    console.log(searchQuery);
+    this.tasksService.filterTasksByName(searchQuery);
+  }
+
+  getFilteredTasks(): Task[] {
+    return this._filteredTasks;
   }
 }

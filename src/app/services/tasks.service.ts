@@ -20,10 +20,21 @@ export class TasksService {
       isChecked: false,
     },
   ];
+  filteredTasks: Task[] = this.tasks;
 
   constructor() {}
 
   addTask(taskName: string, taskType = TaskTypes.Regular) {
     this.tasks.push({ id: uuidv4(), taskName, taskType, isChecked: false });
+  }
+
+  filterTasksByName(query: string) {
+    if (!query) return;
+
+    this.filteredTasks = this.tasks.filter((task) =>
+      task.taskName.toLowerCase().includes(query.toLowerCase())
+    );
+
+    console.log(this.filteredTasks);
   }
 }
