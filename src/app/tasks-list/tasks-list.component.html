@@ -4,6 +4,7 @@
     [task]="task"
     (taskChangeEvent)="changeTask($event)"
     (taskDeleteEvent)="deleteTask($event)"
+    (taskCheckEvent)="checkTask($event)"
   />
   <p class="no-tasks-text" *ngIf="filteredTasks.length === 0">
     There is no tasks :(

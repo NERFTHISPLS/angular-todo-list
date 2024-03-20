@@ -37,13 +37,19 @@ export class TasksListComponent {
     return this._filteredTasks;
   }
 
-  changeTask(changedTask: Task) {
+  changeTask(changedTask: Task): void {
     this.tasksService.changeTask(changedTask);
     this._filteredTasks = this.tasksService.filteredTasks;
   }
 
-  deleteTask(id: string) {
+  deleteTask(id: string): void {
     this.tasksService.deleteTask(id);
     this._filteredTasks = this.tasksService.filteredTasks;
+  }
+
+  checkTask(id: string): void {
+    this.tasksService.checkTask(id);
+    this._filteredTasks = this.tasksService.filteredTasks;
+    console.log(this._filteredTasks);
   }
 }

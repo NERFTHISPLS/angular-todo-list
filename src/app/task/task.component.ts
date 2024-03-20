@@ -25,6 +25,7 @@ export class TaskComponent implements OnInit {
 
   @Output() taskChangeEvent = new EventEmitter<Task>();
   @Output() taskDeleteEvent = new EventEmitter<string>();
+  @Output() taskCheckEvent = new EventEmitter<string>();
 
   ngOnInit(): void {
     this.isTaskImportant = this.task.taskType === TaskTypes.Important;
@@ -38,5 +39,9 @@ export class TaskComponent implements OnInit {
 
   deleteTask(id: string): void {
     this.taskDeleteEvent.emit(id);
+  }
+
+  checkTask(id: string) {
+    this.taskCheckEvent.emit(id);
   }
 }
