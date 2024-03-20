@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnChanges,
-  SimpleChanges,
-  inject,
-} from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TaskComponent } from '../task/task.component';
 import { TasksService } from '../services/tasks.service';
@@ -17,7 +10,6 @@ import { TaskEventValue, Task, TaskTypes } from '../interfaces/task';
   imports: [TaskComponent, CommonModule],
   templateUrl: './tasks-list.component.html',
   styleUrl: './tasks-list.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TasksListComponent {
   private _tasksService = inject(TasksService);
