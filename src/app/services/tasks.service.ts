@@ -95,4 +95,14 @@ export class TasksService {
       this.filteredTasks
     );
   }
+
+  checkTask(id: string) {
+    this.tasks = this.tasks.map((task) =>
+      task.id === id ? { ...task, isChecked: !task.isChecked } : task
+    );
+    this.filteredTasks = this._getIntersectionOf(
+      this.tasks,
+      this.filteredTasks
+    );
+  }
 }

@@ -13,7 +13,7 @@ export interface Task {
   id: string;
   taskName: string;
   taskType: TaskTypes;
-  isChecked: false;
+  isChecked: boolean;
 }
 
 export interface TaskEventValue {

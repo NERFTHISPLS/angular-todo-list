@@ -1,5 +1,11 @@
 <li class="task">
-  <input class="checkbox" type="checkbox" [id]="task.id" />
+  <input
+    [checked]="task.isChecked"
+    class="checkbox"
+    type="checkbox"
+    [id]="task.id"
+    (change)="checkTask(task.id)"
+  />
   <label class="task-label" [for]="task.id">{{ task.taskName }}</label>
   <span class="task-important" *ngIf="isTaskImportant">Important</span>
 
