@@ -11,20 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
   providedIn: 'root',
 })
 export class TasksService {
-  tasks: Task[] = [
-    {
-      id: 'task1',
-      taskName: 'Some task 1',
-      taskType: TaskTypes.Regular,
-      isChecked: false,
-    },
-    {
-      id: 'task2',
-      taskName: 'Some task 2',
-      taskType: TaskTypes.Important,
-      isChecked: false,
-    },
-  ];
+  tasks: Task[] = [];
   filteredTasks: Task[] = this.tasks;
 
   constructor() {}
