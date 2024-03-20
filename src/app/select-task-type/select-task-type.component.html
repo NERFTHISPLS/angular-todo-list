@@ -1,1 +1,12 @@
-<p>select-task-type works!</p>
+<div class="select-container" [formGroup]="form">
+  <select
+    class="task-status"
+    name="task-status"
+    formControlName="taskType"
+    [formControl]="control"
+  >
+    <option *ngFor="let taskType of taskTypesValues" [value]="taskType">
+      {{ taskType }}
+    </option>
+  </select>
+</div>

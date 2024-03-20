@@ -27,6 +27,8 @@ export class TasksService {
   addTask(taskName: string, taskType = TaskTypes.Regular) {
     this.tasks.push({ id: uuidv4(), taskName, taskType, isChecked: false });
     this.filteredTasks = this.tasks;
+
+    console.log(this.tasks);
   }
 
   filterTasksByName(query: string) {
