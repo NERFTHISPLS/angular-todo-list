@@ -21,5 +21,6 @@ export class TasksSearchComponent {
 
   searchTasks() {
     this.searchQueryEvent.emit(this.searchForm.value as TaskEventValue);
+    this.searchForm.get('taskName')?.reset('');
   }
 }
