@@ -3,6 +3,12 @@ export enum TaskTypes {
   Important = 'Important',
 }
 
+export enum FilterTaskTypes {
+  All = 'All',
+  Regular = 'Regular',
+  Important = 'Important',
+}
+
 export interface Task {
   id: string;
   taskName: string;
@@ -10,7 +16,7 @@ export interface Task {
   isChecked: false;
 }
 
-export interface NewTaskEventValue {
+export interface TaskEventValue {
   taskName: string;
-  taskType: TaskTypes;
+  taskType: TaskTypes | FilterTaskTypes;
 }

@@ -7,11 +7,12 @@
     formControlName="taskName"
   />
 
-  <select class="task-status" name="task-status" formControlName="taskType">
-    <option *ngFor="let taskType of taskTypesValues" [value]="taskType">
-      {{ taskType }}
-    </option>
-  </select>
+  <app-select-task-type
+    class="select"
+    [control]="taskForm.controls['taskType']"
+    [form]="taskForm"
+    [taskTypesValues]="taskTypesValues"
+  />
 
   <button class="btn">
     <span class="material-symbols-outlined">add_circle</span>

@@ -1,12 +1,13 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
-import { NewTaskEventValue, TaskTypes } from '../interfaces/task';
+import { TaskEventValue, TaskTypes } from '../interfaces/task';
 import { CommonModule } from '@angular/common';
+import { SelectTaskTypeComponent } from '../select-task-type/select-task-type.component';
 
 @Component({
   selector: 'app-task-form',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, SelectTaskTypeComponent],
   templateUrl: './task-form.component.html',
   styleUrl: './task-form.component.scss',
 })
@@ -15,14 +16,9 @@ export class TaskFormComponent {
     taskName: new FormControl(''),
     taskType: new FormControl<TaskTypes>(TaskTypes.Regular),
   });
+  taskTypesValues = Object.values(TaskTypes);
 
-  taskTypesValues: string[];
-
-  constructor() {
-    this.taskTypesValues = Object.values(TaskTypes);
-  }
-
-  @Output() newTaskEvent = new EventEmitter<NewTaskEventValue>();
+  @Output() newTaskEvent = new EventEmitter<TaskEventValue>();
 
   addNewTask() {
     this.newTaskEvent.emit({

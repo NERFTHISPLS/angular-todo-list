@@ -3,8 +3,16 @@
     class="input"
     type="text"
     placeholder="Search for the task..."
-    formControlName="searchQuery"
+    formControlName="taskName"
   />
+
+  <app-select-task-type
+    class="select"
+    [control]="searchForm.controls['taskType']"
+    [form]="searchForm"
+    [taskTypesValues]="taskTypesValues"
+  >
+  </app-select-task-type>
 
   <button class="btn">
     <span class="material-symbols-outlined">search</span>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TaskFormComponent } from './task-form/task-form.component';
 import { TasksListComponent } from './tasks-list/tasks-list.component';
-import { NewTaskEventValue } from './interfaces/task';
+import { FilterTaskTypes, TaskEventValue, TaskTypes } from './interfaces/task';
 import { TasksSearchComponent } from './tasks-search/tasks-search.component';
 
 @Component({
@@ -13,14 +13,14 @@ import { TasksSearchComponent } from './tasks-search/tasks-search.component';
 })
 export class AppComponent {
   title = 'angular-todo-list';
-  newTask!: NewTaskEventValue;
-  searchQuery: string = '';
+  newTask!: TaskEventValue;
+  taskParams!: TaskEventValue;
 
-  setNewTask(newTask: NewTaskEventValue): void {
+  setNewTask(newTask: TaskEventValue): void {
     this.newTask = newTask;
   }
 
-  setSearchQuery(searchQuery: string): void {
-    this.searchQuery = searchQuery;
+  searchTasks(taskParams: TaskEventValue): void {
+    this.taskParams = taskParams;
   }
 }

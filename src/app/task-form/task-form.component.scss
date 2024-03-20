@@ -3,16 +3,3 @@
   justify-content: space-between;
   gap: 0.4rem;
 }
-
-.task-status {
-  border: 1px solid #868e96;
-  border-radius: 5px;
-
-  color: inherit;
-
-  outline: none;
-
-  &:focus {
-    border: 1px solid #495057;
-  }
-}
