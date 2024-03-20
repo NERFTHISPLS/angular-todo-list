@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   Input,
   OnChanges,
@@ -16,6 +17,7 @@ import { TaskEventValue, Task, TaskTypes } from '../interfaces/task';
   imports: [TaskComponent, CommonModule],
   templateUrl: './tasks-list.component.html',
   styleUrl: './tasks-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TasksListComponent {
   private _tasksService = inject(TasksService);
