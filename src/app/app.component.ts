@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { TaskFormComponent } from './task-form/task-form.component';
 import { TasksListComponent } from './tasks-list/tasks-list.component';
-import { TaskComponent } from './task/task.component';
 import { NewTaskEventValue } from './interfaces/task';
+import { TasksSearchComponent } from './tasks-search/tasks-search.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [TaskFormComponent, TasksListComponent],
+  imports: [TaskFormComponent, TasksListComponent, TasksSearchComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
