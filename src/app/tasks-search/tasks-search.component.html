@@ -6,6 +6,12 @@
     formControlName="searchQuery"
   />
 
+  <app-select-task-type
+    class="select"
+    [control]="searchForm.controls['taskType']"
+    [form]="searchForm"
+  />
+
   <button class="btn">
     <span class="material-symbols-outlined">search</span>
     <span>Search</span>
