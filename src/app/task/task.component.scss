@@ -1,0 +1,89 @@
+.task {
+  display: flex;
+  align-items: center;
+}
+
+.task-label {
+  position: relative;
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+
+  font-size: 1.6rem;
+}
+
+.checkbox {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.checkbox + .task-label::before {
+  content: "";
+
+  flex: 0 0 auto;
+
+  display: inline-block;
+
+  width: 1.2rem;
+  height: 1.2rem;
+
+  margin-right: 1rem;
+
+  border: 1px solid #adb5bd;
+  border-radius: 50%;
+}
+
+.checkbox:checked + .task-label::after {
+  content: "";
+
+  top: 0;
+  left: 0.7rem;
+  position: absolute;
+
+  width: 0.2rem;
+  height: 1.2rem;
+
+  border-right: 3px solid #5c940d;
+  border-bottom: 3px solid #5c940d;
+
+  transform: rotate(45deg);
+}
+
+.checkbox:checked + .task-label::before {
+  background-color: #c0eb75;
+}
+
+.checkbox,
+.task-label,
+.task button {
+  cursor: pointer;
+}
+
+.checkbox:checked + .task-label {
+  text-decoration: line-through;
+  opacity: 0.9;
+}
+
+.btns-container {
+  display: flex;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0.4rem;
+
+  border-radius: 50%;
+
+  border: none;
+  outline: none;
+  background: none;
+
+  &:hover {
+    background-color: #e9ecef;
+  }
+}
