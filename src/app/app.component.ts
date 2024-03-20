@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { TaskFormComponent } from './task-form/task-form.component';
 import { TasksListComponent } from './tasks-list/tasks-list.component';
 import { TaskComponent } from './task/task.component';
+import { NewTaskEventValue } from './interfaces/task';
 
 @Component({
   selector: 'app-root',
@@ -12,4 +13,9 @@ import { TaskComponent } from './task/task.component';
 })
 export class AppComponent {
   title = 'angular-todo-list';
+  newTask!: NewTaskEventValue;
+
+  addNewTask(newTask: NewTaskEventValue) {
+    this.newTask = newTask;
+  }
 }

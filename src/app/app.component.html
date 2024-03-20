@@ -1,2 +1,2 @@
-<app-task-form class="task-form" />
-<app-tasks-list />
+<app-task-form class="task-form" (newTaskEvent)="addNewTask($event)" />
+<app-tasks-list [newTask]="newTask" />
