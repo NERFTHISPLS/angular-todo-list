@@ -14,8 +14,13 @@ import { TasksSearchComponent } from './tasks-search/tasks-search.component';
 export class AppComponent {
   title = 'angular-todo-list';
   newTask!: NewTaskEventValue;
+  searchQuery: string = '';
 
-  addNewTask(newTask: NewTaskEventValue) {
+  setNewTask(newTask: NewTaskEventValue): void {
     this.newTask = newTask;
+  }
+
+  setSearchQuery(searchQuery: string): void {
+    this.searchQuery = searchQuery;
   }
 }
