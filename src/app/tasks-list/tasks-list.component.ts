@@ -19,8 +19,7 @@ import { TaskEventValue, Task, TaskTypes } from '../interfaces/task';
 })
 export class TasksListComponent {
   tasksService = inject(TasksService);
-  tasks = this.tasksService.tasks;
-  private _filteredTasks = this.tasks;
+  private _filteredTasks = this.tasksService.filteredTasks;
 
   @Input() set newTask(task: TaskEventValue) {
     if (!task) return;

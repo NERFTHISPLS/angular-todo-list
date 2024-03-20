@@ -79,7 +79,5 @@ export class TasksService {
     this.filteredTasks = [this.tasks, this.filteredTasks].reduce((acc, arr) => {
       return acc.filter((res) => arr.find((value) => value.id === res.id));
     });
-
-    console.log(this.filteredTasks);
   }
 }

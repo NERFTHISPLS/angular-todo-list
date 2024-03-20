@@ -4,4 +4,7 @@
     [task]="task"
     (taskChangeEvent)="changeTask($event)"
   />
+  <p class="no-tasks-text" *ngIf="filteredTasks.length === 0">
+    There is no tasks :(
+  </p>
 </ul>
