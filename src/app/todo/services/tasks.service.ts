@@ -4,7 +4,7 @@ import {
   Task,
   TaskEventValue,
   TaskTypes,
-} from '../interfaces/task';
+} from '../../interfaces/task';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({

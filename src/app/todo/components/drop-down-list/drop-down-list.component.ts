@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { TaskTypes } from '../interfaces/task';
+import { TaskTypes } from '../../../interfaces/task';
 
 @Component({
   selector: 'app-drop-down-list',

@@ -1,8 +1,8 @@
 import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TaskComponent } from '../task/task.component';
-import { TasksService } from '../services/tasks.service';
-import { TaskEventValue, Task, TaskTypes } from '../interfaces/task';
+import { TasksService } from '../../services/tasks.service';
+import { TaskEventValue, Task, TaskTypes } from '../../../interfaces/task';
 
 @Component({
   selector: 'app-tasks-list',

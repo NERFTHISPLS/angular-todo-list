@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
-import { TaskEventValue, TaskTypes } from '../interfaces/task';
+import { TaskEventValue, TaskTypes } from '../../../interfaces/task';
 import { CommonModule } from '@angular/common';
 import { SelectTaskTypeComponent } from '../select-task-type/select-task-type.component';
 

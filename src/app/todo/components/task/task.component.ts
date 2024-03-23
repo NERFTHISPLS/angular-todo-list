@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Task, TaskTypes } from '../interfaces/task';
+import { Task, TaskTypes } from '../../../interfaces/task';
 import { DropDownListComponent } from '../drop-down-list/drop-down-list.component';
 import { CommonModule } from '@angular/common';
 
