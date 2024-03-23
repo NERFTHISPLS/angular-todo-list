@@ -23,6 +23,8 @@ export class TasksListComponent {
   }
 
   @Input() set filteredTasks(searchParams: TaskEventValue) {
+    if (!searchParams) return;
+
     this._tasksService.filterTasks(searchParams);
     this._filteredTasks = this._tasksService.filteredTasks;
   }

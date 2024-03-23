@@ -11,62 +11,85 @@ import { v4 as uuidv4 } from 'uuid';
   providedIn: 'root',
 })
 export class TasksService {
-  tasks: Task[] = [];
-  filteredTasks: Task[] = this.tasks;
+  private _tasks: Task[] = [];
+  public filteredTasks = this._tasks;
 
-  constructor() {}
-
-  addTask(taskName: string, taskType = TaskTypes.Regular): void {
+  public addTask(taskName: string, taskType: TaskTypes): void {
     if (!taskName) return;
 
-    this.tasks = [
-      ...this.tasks,
+    this._tasks = [
+      ...this._tasks,
       { id: uuidv4(), taskName, taskType, isChecked: false },
     ];
 
-    this.filteredTasks = this.tasks;
+    this.filteredTasks = this._tasks;
   }
 
-  private _isTaskIncludes(taskName: string, target: string) {
-    return taskName.toLowerCase().includes(target.toLowerCase());
-  }
-
-  filterTasks(searchParams: TaskEventValue): void {
-    if (!searchParams) {
-      this.filteredTasks = this.tasks;
+  public filterTasks(filterParams: TaskEventValue): void {
+    if (this._isSearchingForAllTasks(filterParams)) {
+      this.filteredTasks = this._tasks;
       return;
     }
 
     if (
-      !searchParams.taskName &&
-      searchParams.taskType === FilterTaskTypes.All
+      this._isFilterParamsTaskTypeAll(<FilterTaskTypes>filterParams.taskType)
     ) {
-      this.filteredTasks = this.tasks;
-      return;
-    }
-
-    if (searchParams.taskType === FilterTaskTypes.All) {
-      this.filteredTasks = this.tasks.filter((task) =>
-        this._isTaskIncludes(task.taskName, searchParams.taskName)
+      this.filteredTasks = this._tasks.filter((task) =>
+        this._isTaskIncludes(filterParams.taskName, task.taskName)
       );
 
       return;
     }
 
-    if (searchParams.taskType === FilterTaskTypes.Checked) {
-      this.filteredTasks = this.tasks.filter(
+    if (
+      this._isFilterParamsTaskTypeChecked(
+        <FilterTaskTypes>filterParams.taskType
+      )
+    ) {
+      this.filteredTasks = this._tasks.filter(
         (task) =>
-          this._isTaskIncludes(task.taskName, searchParams.taskName) &&
+          this._isTaskIncludes(filterParams.taskName, task.taskName) &&
           task.isChecked
       );
 
       return;
     }
 
-    this.filteredTasks = this.tasks.filter(
+    this.filteredTasks = this._tasks.filter(
       (task) =>
-        this._isTaskIncludes(task.taskName, searchParams.taskName) &&
-        task.taskType === searchParams.taskType
+        this._isTaskIncludes(filterParams.taskName, task.taskName) &&
+        task.taskType === filterParams.taskType
+    );
+  }
+
+  changeTask(changedTask: Task): void {
+    this._tasks = this._tasks.map((task) =>
+      task.id === changedTask.id ? changedTask : task
+    );
+
+    this.filteredTasks = this._getIntersectionOf(
+      this._tasks,
+      this.filteredTasks
+    );
+  }
+
+  deleteTask(id: string) {
+    this._tasks = this._tasks.filter((task) => task.id !== id);
+
+    this.filteredTasks = this._getIntersectionOf(
+      this._tasks,
+      this.filteredTasks
+    );
+  }
+
+  checkTask(id: string) {
+    this._tasks = this._tasks.map((task) =>
+      task.id === id ? { ...task, isChecked: !task.isChecked } : task
+    );
+
+    this.filteredTasks = this._getIntersectionOf(
+      this._tasks,
+      this.filteredTasks
     );
   }
 
@@ -76,32 +99,26 @@ export class TasksService {
     });
   }
 
-  changeTask(changedTask: Task): void {
-    this.tasks = this.tasks.map((task) =>
-      task.id === changedTask.id ? changedTask : task
-    );
-
-    this.filteredTasks = this._getIntersectionOf(
-      this.tasks,
-      this.filteredTasks
-    );
+  private _isTaskIncludes(target: string, taskName: string) {
+    return taskName.toLowerCase().includes(target.toLowerCase());
   }
 
-  deleteTask(id: string) {
-    this.tasks = this.tasks.filter((task) => task.id !== id);
-    this.filteredTasks = this._getIntersectionOf(
-      this.tasks,
-      this.filteredTasks
-    );
+  private _isSearchInputEmpty(searchInput: string): boolean {
+    return searchInput === '';
   }
 
-  checkTask(id: string) {
-    this.tasks = this.tasks.map((task) =>
-      task.id === id ? { ...task, isChecked: !task.isChecked } : task
-    );
-    this.filteredTasks = this._getIntersectionOf(
-      this.tasks,
-      this.filteredTasks
+  private _isFilterParamsTaskTypeAll(taskType: FilterTaskTypes): boolean {
+    return taskType === FilterTaskTypes.All;
+  }
+
+  private _isFilterParamsTaskTypeChecked(taskType: FilterTaskTypes): boolean {
+    return taskType === FilterTaskTypes.Checked;
+  }
+
+  private _isSearchingForAllTasks(filterParams: TaskEventValue): boolean {
+    return (
+      this._isSearchInputEmpty(filterParams.taskName) &&
+      this._isFilterParamsTaskTypeAll(<FilterTaskTypes>filterParams.taskType)
     );
   }
 }
