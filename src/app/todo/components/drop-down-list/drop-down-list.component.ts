@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { TaskTypes } from '../interfaces/task';
+import { TaskTypes } from '../../../interfaces/task';
 
 @Component({
   selector: 'app-drop-down-list',
@@ -9,12 +9,12 @@ import { TaskTypes } from '../interfaces/task';
   styleUrl: './drop-down-list.component.scss',
 })
 export class DropDownListComponent implements OnInit {
-  @Input() isTaskImportant!: boolean;
-  dropDownText!: string;
+  @Input() public isTaskImportant!: boolean;
+  @Output() public changeTaskTypeEvent = new EventEmitter<TaskTypes>();
 
-  @Output() changeTaskTypeEvent = new EventEmitter<TaskTypes>();
+  public dropDownText!: string;
 
-  changeTaskType() {
+  public changeTaskType(): void {
     const newTaskType = this.isTaskImportant
       ? TaskTypes.Regular
       : TaskTypes.Important;
@@ -22,7 +22,7 @@ export class DropDownListComponent implements OnInit {
     this.changeTaskTypeEvent.emit(newTaskType);
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.dropDownText = this.isTaskImportant ? 'regular' : 'important';
   }
 }

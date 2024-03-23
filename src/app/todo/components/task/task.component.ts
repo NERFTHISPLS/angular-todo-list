@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Task, TaskTypes } from '../interfaces/task';
+import { Task, TaskTypes } from '../../../interfaces/task';
 import { DropDownListComponent } from '../drop-down-list/drop-down-list.component';
 import { CommonModule } from '@angular/common';
 
@@ -11,29 +11,29 @@ import { CommonModule } from '@angular/common';
   styleUrl: './task.component.scss',
 })
 export class TaskComponent implements OnInit {
-  @Input() task!: Task;
+  @Input() public task!: Task;
 
-  isTaskImportant!: boolean;
+  @Output() public taskChangeEvent = new EventEmitter<Task>();
+  @Output() public taskDeleteEvent = new EventEmitter<string>();
+  @Output() public taskCheckEvent = new EventEmitter<string>();
 
-  @Output() taskChangeEvent = new EventEmitter<Task>();
-  @Output() taskDeleteEvent = new EventEmitter<string>();
-  @Output() taskCheckEvent = new EventEmitter<string>();
+  public isTaskImportant!: boolean;
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.isTaskImportant = this.task.taskType === TaskTypes.Important;
   }
 
-  changeTaskType(newTaskType: TaskTypes): void {
+  public changeTaskType(newTaskType: TaskTypes): void {
     const updatedTask = { ...this.task, taskType: newTaskType };
 
     this.taskChangeEvent.emit(updatedTask);
   }
 
-  deleteTask(id: string): void {
+  public deleteTask(id: string): void {
     this.taskDeleteEvent.emit(id);
   }
 
-  checkTask(id: string) {
+  public checkTask(id: string) {
     this.taskCheckEvent.emit(id);
   }
 }

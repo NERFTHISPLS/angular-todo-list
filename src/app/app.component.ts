@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TaskFormComponent } from './task-form/task-form.component';
-import { TasksListComponent } from './tasks-list/tasks-list.component';
+import { TaskFormComponent } from './todo/components/task-form/task-form.component';
+import { TasksListComponent } from './todo/components/tasks-list/tasks-list.component';
 import { TaskEventValue } from './interfaces/task';
-import { TasksSearchComponent } from './tasks-search/tasks-search.component';
+import { TasksSearchComponent } from './todo/components/tasks-search/tasks-search.component';
 
 @Component({
   selector: 'app-root',
@@ -13,15 +13,14 @@ import { TasksSearchComponent } from './tasks-search/tasks-search.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  title = 'angular-todo-list';
-  newTask!: TaskEventValue;
-  taskParams!: TaskEventValue;
+  public newTask!: TaskEventValue;
+  public taskParams!: TaskEventValue;
 
-  setNewTask(newTask: TaskEventValue): void {
+  public setNewTask(newTask: TaskEventValue): void {
     this.newTask = newTask;
   }
 
-  searchTasks(taskParams: TaskEventValue): void {
+  public searchTasks(taskParams: TaskEventValue): void {
     this.taskParams = taskParams;
   }
 }

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { FilterTaskTypes, TaskTypes } from '../interfaces/task';
+import { FilterTaskTypes, TaskTypes } from '../../../interfaces/task';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -12,7 +12,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectTaskTypeComponent {
-  @Input() taskTypesValues!: string[];
-  @Input() control!: FormControl<TaskTypes | FilterTaskTypes | null>;
-  @Input() form!: FormGroup;
+  @Input() public taskTypesValues!: string[];
+  @Input() public control!: FormControl<TaskTypes | FilterTaskTypes | null>;
+  @Input() public form!: FormGroup;
 }
