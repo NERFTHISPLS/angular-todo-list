@@ -11,16 +11,16 @@ import { FilterTaskTypes, TaskEventValue } from '../interfaces/task';
   styleUrl: './tasks-search.component.scss',
 })
 export class TasksSearchComponent {
-  searchForm = new FormGroup({
+  public searchForm = new FormGroup({
     taskName: new FormControl(''),
     taskType: new FormControl<FilterTaskTypes | null>(FilterTaskTypes.All),
   });
-  taskTypesValues = Object.values(FilterTaskTypes);
+  public taskTypesValues = Object.values(FilterTaskTypes);
 
-  @Output() searchQueryEvent = new EventEmitter<TaskEventValue>();
+  @Output() public searchQueryEvent = new EventEmitter<TaskEventValue>();
 
-  searchTasks() {
+  public searchTasks(): void {
     this.searchQueryEvent.emit(this.searchForm.value as TaskEventValue);
-    this.searchForm.get('taskName')?.reset('');
+    this.searchForm.get('taskName')!.reset('');
   }
 }
