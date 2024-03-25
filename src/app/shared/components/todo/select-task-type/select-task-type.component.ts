@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { FilterTaskTypes, TaskTypes } from '../../../interfaces/task';
+import { FilterTaskTypes, TaskTypes } from '../../../../interfaces/task';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
