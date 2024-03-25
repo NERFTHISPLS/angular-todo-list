@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TasksSearchComponent } from '../../components/tasks-search/tasks-search.component';
-import { TasksListComponent } from '../../components/tasks-list/tasks-list.component';
-import { TaskFormComponent } from '../../components/task-form/task-form.component';
-import { TaskEventValue } from '../../../interfaces/task';
+import { TasksSearchComponent } from '../../shared/components/todo/tasks-search/tasks-search.component';
+import { TasksListComponent } from '../../shared/components/todo/tasks-list/tasks-list.component';
+import { TaskFormComponent } from '../../shared/components/todo/task-form/task-form.component';
+import { TaskEventValue } from '../../interfaces/task';
 
 @Component({
   selector: 'app-todo',

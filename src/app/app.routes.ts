@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { TodoComponent } from './todo/pages/todo/todo.component';
-import { AuthComponent } from './auth/pages/auth/auth.component';
+import { TodoComponent } from './pages/todo/todo.component';
+import { AuthComponent } from './pages/auth/auth.component';
 
 export const routes: Routes = [
   {
