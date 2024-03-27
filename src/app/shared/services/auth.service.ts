@@ -44,7 +44,7 @@ export class AuthService {
     fullName: string,
     email: string,
     password: string
-  ): Observable<User | never> {
+  ): Observable<UserRegistrationResponse | never> {
     const { apiUrl } = environment;
     const urlToFetch = `${apiUrl}/auth/registration`;
 
@@ -55,10 +55,6 @@ export class AuthService {
         fio: fullName,
       })
       .pipe(
-        map(
-          (response: UserRegistrationResponse): User =>
-            this._parseJwt(response.token)
-        ),
         catchError((error: UserFetchError): Observable<never> => {
           console.error(error.error.message);
 
