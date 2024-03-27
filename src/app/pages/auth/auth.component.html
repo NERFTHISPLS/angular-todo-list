@@ -1,25 +1,29 @@
-<div class="container">
-  <h2 class="header">Authentication</h2>
+<div class="auth-container">
+  <h2 class="auth-header">Authentication</h2>
+
+  <p class="auth-register-success" *ngIf="wasJustRegistered">
+    You've successfully registered an account. Please, log in.
+  </p>
 
   <form class="auth-form" [formGroup]="authForm" (submit)="submitAuth()">
-    <div class="input-container">
+    <div class="auth-input-container">
       <label class="auth-label" for="email">Email</label>
       <input
-        class="input input--auth"
+        class="input auth-input"
         id="email"
         type="email"
         placeholder="example@gmail.com"
         formControlName="email"
       />
       <p
-        class="input-error"
+        class="auth-input-error"
         *ngIf="submitted && !authForm.value.email; else elseBlock"
       >
         Please, input your email!
       </p>
       <ng-template #elseBlock>
         <p
-          class="input-error"
+          class="auth-input-error"
           *ngIf="submitted && !isEmailValid(authForm.value.email)"
         >
           Incorrect email format!
@@ -27,22 +31,25 @@
       </ng-template>
     </div>
 
-    <div class="input-container">
+    <div class="auth-input-container">
       <label class="auth-label" for="password">Password</label>
       <input
-        class="input input--auth"
+        class="input auth-input"
         id="password"
         type="password"
         placeholder="Your password..."
         formControlName="password"
       />
-      <p class="input-error" *ngIf="submitted && !authForm.value.password">
+      <p class="auth-input-error" *ngIf="submitted && !authForm.value.password">
         Please, input your password!
       </p>
     </div>
 
-    <button class="btn btn--auth">Sign In</button>
+    <div class="buttons">
+      <a class="register-link" routerLink="register">Sign up</a>
+      <button class="btn auth-btn btn--stretch">Sign In</button>
+    </div>
 
-    <p class="login-error">{{ errorMessage }}</p>
+    <p class="auth-login-error">{{ errorMessage }}</p>
   </form>
 </div>
