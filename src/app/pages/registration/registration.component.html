@@ -1,7 +1,17 @@
 <div class="reg-container">
   <h2 class="reg-header">Registration</h2>
 
-  <form class="reg-form">
+  <form class="reg-form" [formGroup]="regForm">
+    <div class="reg-input-container">
+      <label class="reg-label" for="name">Name</label>
+      <input
+        class="input reg-input"
+        id="name"
+        type="text"
+        placeholder="example@gmail.com"
+      />
+    </div>
+
     <div class="reg-input-container">
       <label class="reg-label" for="email">Email</label>
       <input
