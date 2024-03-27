@@ -2,6 +2,16 @@ export interface UserLoginResponse {
   token: string;
 }
 
+export interface UserRegistrationResponse {
+  token: string;
+}
+
+export interface UserFetchError {
+  error: {
+    message: string;
+  };
+}
+
 interface UserRole {
   id: number;
   userId: number;
@@ -15,7 +25,7 @@ interface Roles {
   name: string;
   createdAt: string;
   updatedAt: string;
-  UserRole: UserRole;
+  UserRole?: UserRole;
 }
 
 export interface User {

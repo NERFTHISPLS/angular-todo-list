@@ -1,7 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { User, UserLoginResponse } from '../../interfaces/user';
+import {
+  User,
+  UserFetchError,
+  UserLoginResponse,
+  UserRegistrationResponse,
+} from '../../interfaces/user';
 import { Observable, catchError, map, of, tap } from 'rxjs';
 
 @Injectable({
@@ -26,11 +31,38 @@ export class AuthService {
         map(
           (response: UserLoginResponse): User => this._parseJwt(response.token)
         ),
-        catchError((): Observable<never> => {
+        catchError((error: UserFetchError): Observable<never> => {
           localStorage.removeItem('userToken');
-          console.error('Unknown user');
+          console.error(error.error.message);
 
-          throw new Error('Incorrect login or password!');
+          throw new Error(error.error.message);
+        })
+      );
+  }
+
+  public register(
+    fullName: string,
+    email: string,
+    password: string
+  ): Observable<User | never> {
+    const { apiUrl } = environment;
+    const urlToFetch = `${apiUrl}/auth/registration`;
+
+    return this._httpClient
+      .post<UserRegistrationResponse>(urlToFetch, {
+        email,
+        password,
+        fio: fullName,
+      })
+      .pipe(
+        map(
+          (response: UserRegistrationResponse): User =>
+            this._parseJwt(response.token)
+        ),
+        catchError((error: UserFetchError): Observable<never> => {
+          console.error(error.error.message);
+
+          throw new Error(error.error.message);
         })
       );
   }
