@@ -1,4 +1,10 @@
-import { Component, Input, inject } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TaskComponent } from '../task/task.component';
 import { TasksService } from '../../../services/tasks.service';
@@ -13,7 +19,18 @@ import { TaskEventValue, Task, TaskTypes } from '../../../../interfaces/task';
 })
 export class TasksListComponent {
   private _tasksService = inject(TasksService);
-  private _filteredTasks = this._tasksService.filteredTasks;
+  private _filteredTasks: Task[] = [];
+
+  constructor(private readonly _changeDetector: ChangeDetectorRef) {}
+
+  ngOnInit(): void {
+    this._tasksService.fetchTasks().subscribe({
+      next: (tasks: Task[]) => {
+        this._filteredTasks = tasks;
+        this._changeDetector.detectChanges();
+      },
+    });
+  }
 
   @Input() public set newTask(task: TaskEventValue) {
     if (!task) return;
