@@ -1,16 +1,18 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
+import { isEmailValid } from '../../shared/helpers';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-registration',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss',
 })
 export class RegistrationComponent {
-  public authForm = new FormGroup({
+  public regForm = new FormGroup({
     name: new FormControl(''),
     email: new FormControl(''),
     password: new FormControl(''),
@@ -24,4 +26,19 @@ export class RegistrationComponent {
     private _authService: AuthService,
     private readonly _changeDetector: ChangeDetectorRef
   ) {}
+
+  public isEmailValid = isEmailValid;
+
+  public submitRegistration() {
+    this.submitted = true;
+
+    const { name, email, password, passwordRepeat } = this.regForm.value;
+
+    if (name === '' || email === '' || password === '' || passwordRepeat === '')
+      return;
+
+    if (!isEmailValid(<string>email)) return;
+
+    if (password !== passwordRepeat) return;
+  }
 }

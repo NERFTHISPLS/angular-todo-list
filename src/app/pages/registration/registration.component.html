@@ -1,15 +1,19 @@
 <div class="reg-container">
   <h2 class="reg-header">Registration</h2>
 
-  <form class="reg-form" [formGroup]="regForm">
+  <form class="reg-form" [formGroup]="regForm" (submit)="submitRegistration()">
     <div class="reg-input-container">
       <label class="reg-label" for="name">Name</label>
       <input
         class="input reg-input"
         id="name"
         type="text"
-        placeholder="example@gmail.com"
+        placeholder="Your name..."
+        formControlName="name"
       />
+      <p class="reg-input-error" *ngIf="submitted && !regForm.value.name">
+        Please, input your name!
+      </p>
     </div>
 
     <div class="reg-input-container">
@@ -19,7 +23,22 @@
         id="email"
         type="text"
         placeholder="example@gmail.com"
+        formControlName="email"
       />
+      <p
+        class="reg-input-error"
+        *ngIf="submitted && !regForm.value.email; else elseBlockEmail"
+      >
+        Please, input your email!
+      </p>
+      <ng-template #elseBlockEmail>
+        <p
+          class="reg-input-error"
+          *ngIf="submitted && !isEmailValid(regForm.value.email)"
+        >
+          Incorrect email format!
+        </p>
+      </ng-template>
     </div>
 
     <div class="reg-input-container">
@@ -29,7 +48,11 @@
         id="password"
         type="password"
         placeholder="Your password..."
+        formControlName="password"
       />
+      <p class="reg-input-error" *ngIf="submitted && !regForm.value.password">
+        Please, input your password!
+      </p>
     </div>
 
     <div class="reg-input-container">
@@ -39,9 +62,31 @@
         id="repeat-password"
         type="password"
         placeholder="Repeat your password..."
+        formControlName="passwordRepeat"
       />
+      <p
+        class="reg-input-error"
+        *ngIf="
+          submitted && !regForm.value.passwordRepeat;
+          else elseBlockPasswordRepeat
+        "
+      >
+        Please, repeat your password!
+      </p>
+      <ng-template #elseBlockPasswordRepeat>
+        <p
+          class="reg-input-error"
+          *ngIf="
+            submitted && regForm.value.password !== regForm.value.passwordRepeat
+          "
+        >
+          Passwords do not match!
+        </p>
+      </ng-template>
     </div>
 
     <button class="btn reg-btn">Sign Up</button>
+
+    <p class="reg-login-error">{{ errorMessage }}</p>
   </form>
 </div>

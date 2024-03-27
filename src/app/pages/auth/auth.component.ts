@@ -4,6 +4,7 @@ import { AuthService } from '../../shared/services/auth.service';
 import { User } from '../../interfaces/user';
 import { CommonModule } from '@angular/common';
 import { Observable, Observer } from 'rxjs';
+import { isEmailValid } from '../../shared/helpers';
 
 @Component({
   selector: 'app-auth',
@@ -26,13 +27,15 @@ export class AuthComponent {
     private readonly _changeDetector: ChangeDetectorRef
   ) {}
 
+  public isEmailValid = isEmailValid;
+
   public submitAuth() {
     this.submitted = true;
 
     const { email, password } = this.authForm.value;
 
     if (email === '' || password === '') return;
-    if (!this.isEmailValid(<string>email)) return;
+    if (!isEmailValid(<string>email)) return;
 
     this._authService.login(<string>email, <string>password).subscribe({
       next: (user: User) => {
@@ -46,13 +49,5 @@ export class AuthComponent {
         this._changeDetector.detectChanges();
       },
     });
-  }
-
-  public isEmailValid(email: string | undefined | null) {
-    if (!email) return false;
-
-    const re = new RegExp('[a-z0-9]+@[a-z]+\\.[a-z]{2,3}');
-
-    return re.test(email);
   }
 }
