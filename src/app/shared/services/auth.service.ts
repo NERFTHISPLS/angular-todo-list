@@ -10,7 +10,7 @@ import { Observable, catchError, map, of, tap } from 'rxjs';
 export class AuthService {
   constructor(private _httpClient: HttpClient) {}
 
-  public login(email: string, password: string): Observable<User | null> {
+  public login(email: string, password: string): Observable<User | never> {
     const { apiUrl } = environment;
     const urlToFetch = `${apiUrl}/auth/login`;
 
@@ -26,11 +26,11 @@ export class AuthService {
         map(
           (response: UserLoginResponse): User => this._parseJwt(response.token)
         ),
-        catchError((): Observable<null> => {
+        catchError((): Observable<never> => {
           localStorage.removeItem('userToken');
           console.error('Unknown user');
 
-          return of(null);
+          throw new Error('Incorrect login or password!');
         })
       );
   }

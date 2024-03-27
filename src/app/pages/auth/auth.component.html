@@ -11,9 +11,20 @@
         placeholder="example@gmail.com"
         formControlName="email"
       />
-      <p class="input-error" *ngIf="!authForm.value.email && submitted">
+      <p
+        class="input-error"
+        *ngIf="submitted && !authForm.value.email; else elseBlock"
+      >
         Please, input your email!
       </p>
+      <ng-template #elseBlock>
+        <p
+          class="input-error"
+          *ngIf="submitted && !isEmailValid(authForm.value.email)"
+        >
+          Incorrect email format!
+        </p>
+      </ng-template>
     </div>
 
     <div class="input-container">
@@ -25,11 +36,13 @@
         placeholder="Your password..."
         formControlName="password"
       />
-      <p class="input-error" *ngIf="!authForm.value.password && submitted">
+      <p class="input-error" *ngIf="submitted && !authForm.value.password">
         Please, input your password!
       </p>
     </div>
 
     <button class="btn btn--auth">Sign In</button>
+
+    <p class="login-error">{{ errorMessage }}</p>
   </form>
 </div>
