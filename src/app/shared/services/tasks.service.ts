@@ -6,13 +6,17 @@ import {
   TaskTypes,
 } from '../../interfaces/task';
 import { v4 as uuidv4 } from 'uuid';
+import { HttpClient } from '@angular/common/http';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TasksService {
-  private _tasks: Task[] = [];
-  public filteredTasks = this._tasks;
+  constructor(private _httpClient: HttpClient) {}
+
+  private _tasks!: Task[];
+  public filteredTasks!: Task[];
 
   public addTask(taskName: string, taskType: TaskTypes): void {
     if (!taskName) return;
@@ -62,7 +66,7 @@ export class TasksService {
     );
   }
 
-  changeTask(changedTask: Task): void {
+  public changeTask(changedTask: Task): void {
     this._tasks = this._tasks.map((task) =>
       task.id === changedTask.id ? changedTask : task
     );
@@ -73,7 +77,7 @@ export class TasksService {
     );
   }
 
-  deleteTask(id: string) {
+  public deleteTask(id: string) {
     this._tasks = this._tasks.filter((task) => task.id !== id);
 
     this.filteredTasks = this._getIntersectionOf(
@@ -82,7 +86,7 @@ export class TasksService {
     );
   }
 
-  checkTask(id: string) {
+  public checkTask(id: string) {
     this._tasks = this._tasks.map((task) =>
       task.id === id ? { ...task, isChecked: !task.isChecked } : task
     );
@@ -90,6 +94,15 @@ export class TasksService {
     this.filteredTasks = this._getIntersectionOf(
       this._tasks,
       this.filteredTasks
+    );
+  }
+
+  public fetchTasks(): Observable<Task[]> {
+    return this._httpClient.get<Task[]>('assets/todo-list.json').pipe(
+      tap((response: Task[]) => {
+        this._tasks = response;
+        this.filteredTasks = response;
+      })
     );
   }
 

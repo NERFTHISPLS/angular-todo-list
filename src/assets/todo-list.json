@@ -1,0 +1,36 @@
+[
+  {
+    "id": "1",
+    "taskName": "Task 1",
+    "taskType": "Regular",
+    "isChecked": false
+  },
+
+  {
+    "id": "2",
+    "taskName": "Task 2",
+    "taskType": "Important",
+    "isChecked": true
+  },
+
+  {
+    "id": "3",
+    "taskName": "Task 3",
+    "taskType": "Regular",
+    "isChecked": false
+  },
+
+  {
+    "id": "4",
+    "taskName": "Task 4",
+    "taskType": "Important",
+    "isChecked": false
+  },
+
+  {
+    "id": "5",
+    "taskName": "Task 5",
+    "taskType": "Regular",
+    "isChecked": true
+  }
+]
