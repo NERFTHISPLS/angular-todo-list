@@ -29,7 +29,7 @@ export class AuthComponent {
     if (email === '' || password === '') return;
 
     this._authService
-      .login('jim@dundermifflin.com', 'password') // temp data
+      .login(<string>email, <string>password)
       .subscribe((user: User | null) => {
         this.submitted = false; // reverting to initial state
         console.log(user);
