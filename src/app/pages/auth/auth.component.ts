@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '../../shared/services/auth.service';
+import { User } from '../../interfaces/user';
 
 @Component({
   selector: 'app-auth',
@@ -14,8 +16,13 @@ export class AuthComponent {
     password: new FormControl(''),
   });
 
+  constructor(private _authService: AuthService) {}
+
   public submitAuth() {
-    console.log(this.authForm.value.email);
-    console.log(this.authForm.value.password);
+    this._authService
+      .login('jim@dundermifflin.com', 'password') // temp data
+      .subscribe((user: User | null) => {
+        console.log(user);
+      });
   }
 }
