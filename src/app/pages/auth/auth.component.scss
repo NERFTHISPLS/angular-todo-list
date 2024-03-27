@@ -1,0 +1,24 @@
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  width: 50%;
+
+  margin: 0 auto;
+}
+
+.register-link:link,
+.register-link:visited {
+  font-size: 1.6rem;
+  color: inherit;
+}
+
+.register-link:hover,
+.register-link:active {
+  color: #343a40;
+}
+
+.btn--stretch {
+  flex: 1;
+}

@@ -3,13 +3,13 @@ import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
 import { User } from '../../interfaces/user';
 import { CommonModule } from '@angular/common';
-import { Observable, Observer } from 'rxjs';
 import { isEmailValid } from '../../shared/helpers';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss',
 })
