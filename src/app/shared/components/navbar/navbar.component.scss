@@ -1,6 +1,7 @@
 .navbar {
   display: flex;
-  align-items: center;
+  align-items: baseline;
+  justify-content: space-between;
 }
 
 .btn-logout {
@@ -18,4 +19,8 @@
   &:focus {
     border-color: #f03e3e;
   }
+}
+
+.welcome-text {
+  font-size: 1.4rem;
 }

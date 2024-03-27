@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../shared/services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
@@ -14,6 +14,8 @@ export class NavbarComponent {
     private _authService: AuthService,
     private readonly _router: Router
   ) {}
+
+  public currentUser = this._authService.currentUser;
 
   public logout() {
     this._authService.logout();

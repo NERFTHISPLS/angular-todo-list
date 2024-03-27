@@ -3,7 +3,7 @@ import { TasksSearchComponent } from '../../shared/components/todo/tasks-search/
 import { TasksListComponent } from '../../shared/components/todo/tasks-list/tasks-list.component';
 import { TaskFormComponent } from '../../shared/components/todo/task-form/task-form.component';
 import { TaskEventValue } from '../../interfaces/task';
-import { NavbarComponent } from '../../navbar/navbar.component';
+import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-todo',
