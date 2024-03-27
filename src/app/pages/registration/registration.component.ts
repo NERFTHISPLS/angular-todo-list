@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
 import { isEmailValid } from '../../shared/helpers';
 import { CommonModule } from '@angular/common';
-import { UserRegistrationResponse } from '../../interfaces/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -25,7 +25,8 @@ export class RegistrationComponent {
 
   constructor(
     private _authService: AuthService,
-    private readonly _changeDetector: ChangeDetectorRef
+    private readonly _changeDetector: ChangeDetectorRef,
+    private readonly _router: Router
   ) {}
 
   public isEmailValid = isEmailValid;
@@ -48,6 +49,7 @@ export class RegistrationComponent {
         // next receives a token, but here it is not used
         next: () => {
           this.submitted = false;
+          this._router.navigate(['']);
         },
         error: (err: Error) => {
           this.errorMessage = err.message;

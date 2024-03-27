@@ -13,6 +13,8 @@ import { Observable, catchError, map, of, tap } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
+  public wasJustRegistered = false;
+
   constructor(private _httpClient: HttpClient) {}
 
   public login(email: string, password: string): Observable<User | never> {
@@ -25,9 +27,10 @@ export class AuthService {
         password,
       })
       .pipe(
-        tap((response: UserLoginResponse) =>
-          localStorage.setItem('userToken', response.token)
-        ),
+        tap((response: UserLoginResponse) => {
+          localStorage.setItem('userToken', response.token);
+          this.wasJustRegistered = false;
+        }),
         map(
           (response: UserLoginResponse): User => this._parseJwt(response.token)
         ),
@@ -55,6 +58,9 @@ export class AuthService {
         fio: fullName,
       })
       .pipe(
+        tap(() => {
+          this.wasJustRegistered = true;
+        }),
         catchError((error: UserFetchError): Observable<never> => {
           console.error(error.error.message);
 

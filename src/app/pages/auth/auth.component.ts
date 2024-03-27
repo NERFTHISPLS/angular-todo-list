@@ -22,6 +22,8 @@ export class AuthComponent {
   public submitted = false;
   public errorMessage = '';
 
+  public wasJustRegistered = this._authService.wasJustRegistered;
+
   constructor(
     private _authService: AuthService,
     private readonly _changeDetector: ChangeDetectorRef

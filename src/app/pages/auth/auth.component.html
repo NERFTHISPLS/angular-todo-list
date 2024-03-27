@@ -1,6 +1,10 @@
 <div class="auth-container">
   <h2 class="auth-header">Authentication</h2>
 
+  <p class="auth-register-success" *ngIf="wasJustRegistered">
+    You've successfully registered an account. Please, log in.
+  </p>
+
   <form class="auth-form" [formGroup]="authForm" (submit)="submitAuth()">
     <div class="auth-input-container">
       <label class="auth-label" for="email">Email</label>
