@@ -1,5 +1,4 @@
-<header class="header">
-  <nav class="navbar">
-    <button class="btn btn-logout" (click)="logout()">Logout</button>
-  </nav>
-</header>
+<nav class="navbar">
+  <p class="welcome-text">Welcome, {{ currentUser?.email }}</p>
+  <button class="btn btn-logout" (click)="logout()">Logout</button>
+</nav>

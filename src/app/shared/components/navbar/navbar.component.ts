@@ -15,6 +15,8 @@ export class NavbarComponent {
     private readonly _router: Router
   ) {}
 
+  public currentUser = this._authService.currentUser;
+
   public logout() {
     this._authService.logout();
     this._router.navigate(['']);
