@@ -16,3 +16,30 @@
   border: 1px solid #868e96;
   border-radius: 11px;
 }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.welcome-text {
+  font-size: 1.4rem;
+}
+
+.btn-logout {
+  padding: 1rem 2rem;
+
+  margin-left: auto;
+  margin-bottom: 2rem;
+
+  background-color: #ffa8a8;
+
+  &:hover {
+    background-color: #ffc9c9;
+  }
+
+  &:focus {
+    border-color: #f03e3e;
+  }
+}

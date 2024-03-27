@@ -4,6 +4,8 @@ import { TasksListComponent } from '../../shared/components/todo/tasks-list/task
 import { TaskFormComponent } from '../../shared/components/todo/task-form/task-form.component';
 import { TaskEventValue } from '../../interfaces/task';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
+import { AuthService } from '../../shared/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo',
@@ -19,6 +21,18 @@ import { NavbarComponent } from '../../shared/components/navbar/navbar.component
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodoComponent {
+  constructor(
+    private _authService: AuthService,
+    private readonly _router: Router
+  ) {}
+
+  public currentUser = this._authService.currentUser;
+
+  public logout() {
+    this._authService.logout();
+    this._router.navigate(['']);
+  }
+
   public newTask!: TaskEventValue;
   public taskParams!: TaskEventValue;
 

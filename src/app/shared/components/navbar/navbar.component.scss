@@ -1,26 +1,12 @@
-.navbar {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-}
-
-.btn-logout {
-  padding: 1rem 2rem;
-
-  margin-left: auto;
+.nav {
   margin-bottom: 2rem;
-
-  background-color: #ffa8a8;
-
-  &:hover {
-    background-color: #ffc9c9;
-  }
-
-  &:focus {
-    border-color: #f03e3e;
-  }
 }
 
-.welcome-text {
-  font-size: 1.4rem;
+.links-list {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+
+  width: 65%;
+  margin: 0 auto;
 }
