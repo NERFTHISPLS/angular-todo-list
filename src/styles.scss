@@ -70,3 +70,67 @@ body {
 .select {
   display: flex;
 }
+
+.auth-container,
+.reg-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  height: 100%;
+  max-width: 72rem;
+
+  margin: 0 auto;
+}
+
+.auth-header,
+.reg-header {
+  margin: 0 auto;
+  margin-bottom: 1rem;
+
+  font-size: 2rem;
+}
+
+.auth-form,
+.reg-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-input-container,
+.reg-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.auth-label,
+.reg-label {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.auth-input,
+.reg-input {
+  padding: 0.5rem 1rem;
+
+  font-size: 1.5rem;
+}
+
+.auth-input-error,
+.auth-login-error,
+.reg-input-error,
+.reg-login-error {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #ff8787;
+}
+
+.auth-btn,
+.reg-btn {
+  padding: 1rem 2rem;
+
+  font-weight: 700;
+  font-size: 2rem;
+}
