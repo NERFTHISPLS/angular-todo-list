@@ -4,7 +4,7 @@ import { AuthService } from '../../shared/services/auth.service';
 import { User } from '../../interfaces/user';
 import { CommonModule } from '@angular/common';
 import { isEmailValid } from '../../shared/helpers';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -26,7 +26,8 @@ export class AuthComponent {
 
   constructor(
     private _authService: AuthService,
-    private readonly _changeDetector: ChangeDetectorRef
+    private readonly _changeDetector: ChangeDetectorRef,
+    private readonly _router: Router
   ) {}
 
   public isEmailValid = isEmailValid;
@@ -42,7 +43,8 @@ export class AuthComponent {
     this._authService.login(<string>email, <string>password).subscribe({
       next: (user: User) => {
         this.submitted = false;
-        console.log(user);
+
+        this._router.navigate(['todo']);
       },
       error: (err: Error) => {
         this.errorMessage = err.message;
