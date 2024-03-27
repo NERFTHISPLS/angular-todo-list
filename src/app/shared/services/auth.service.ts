@@ -15,6 +15,7 @@ import { Observable, catchError, map, of, tap } from 'rxjs';
 export class AuthService {
   public wasJustRegistered = false;
   private _currentUser!: User | null;
+  public token!: string | null;
 
   constructor(private _httpClient: HttpClient) {}
 
@@ -30,6 +31,7 @@ export class AuthService {
       .pipe(
         tap((response: UserLoginResponse) => {
           localStorage.setItem('userToken', response.token);
+          this.token = response.token;
           this.wasJustRegistered = false;
         }),
         map(
