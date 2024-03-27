@@ -14,7 +14,7 @@ import { Observable, catchError, map, of, tap } from 'rxjs';
 })
 export class AuthService {
   public wasJustRegistered = false;
-  private _currentUser: User | null = null;
+  private _currentUser!: User | null;
 
   constructor(private _httpClient: HttpClient) {}
 
@@ -72,6 +72,7 @@ export class AuthService {
 
   public logout() {
     localStorage.removeItem('userToken');
+    this._currentUser = null;
   }
 
   public set currentUser(user: User | null) {
@@ -79,6 +80,14 @@ export class AuthService {
   }
 
   public get currentUser() {
+    if (localStorage.getItem('userToken')) {
+      this._currentUser = this._parseJwt(
+        <string>localStorage.getItem('userToken')
+      );
+    } else {
+      this._currentUser = null;
+    }
+
     return this._currentUser;
   }
 
