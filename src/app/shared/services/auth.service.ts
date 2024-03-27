@@ -14,6 +14,7 @@ import { Observable, catchError, map, of, tap } from 'rxjs';
 })
 export class AuthService {
   public wasJustRegistered = false;
+  private _currentUser: User | null = null;
 
   constructor(private _httpClient: HttpClient) {}
 
@@ -71,6 +72,14 @@ export class AuthService {
 
   public logout() {
     localStorage.removeItem('userToken');
+  }
+
+  public set currentUser(user: User | null) {
+    this._currentUser = user;
+  }
+
+  public get currentUser() {
+    return this._currentUser;
   }
 
   private _parseJwt(token: string): User {

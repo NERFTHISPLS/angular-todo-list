@@ -43,6 +43,7 @@ export class AuthComponent {
     this._authService.login(<string>email, <string>password).subscribe({
       next: (user: User) => {
         this.submitted = false;
+        this._authService.currentUser = user;
 
         this._router.navigate(['todo']);
       },
