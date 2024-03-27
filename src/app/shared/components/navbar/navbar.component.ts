@@ -9,16 +9,4 @@ import { Router, RouterModule } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
-export class NavbarComponent {
-  constructor(
-    private _authService: AuthService,
-    private readonly _router: Router
-  ) {}
-
-  public currentUser = this._authService.currentUser;
-
-  public logout() {
-    this._authService.logout();
-    this._router.navigate(['']);
-  }
-}
+export class NavbarComponent {}

@@ -1,5 +1,9 @@
 <div class="container">
-  <app-navbar />
+  <header class="header">
+    <p class="welcome-text">Welcome, {{ currentUser?.email }}</p>
+    <button class="btn btn-logout" (click)="logout()">Logout</button>
+  </header>
+
   <app-task-form class="task-form" (newTaskEvent)="setNewTask($event)" />
   <app-tasks-search (searchQueryEvent)="searchTasks($event)" />
   <app-tasks-list [newTask]="newTask" [filteredTasks]="taskParams" />
